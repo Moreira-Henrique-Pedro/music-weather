@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
+	"os"
 
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/model"
 )
@@ -21,7 +23,12 @@ func (s *WeatherService) GetWeather(location model.Location) (float64, error) {
 
 	weather := new(model.WeatherResponse)
 
-	url := fmt.Sprintf("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=6eb1300b5a5d4bd52aba1d2297dbc37c&units=metric", location)
+	apiKey := os.Getenv("OPENWEATHER_API_KEY")
+	if apiKey == "" {
+		return 0, fmt.Errorf("API key not found in environment variables")
+	}
+
+	url := fmt.Sprintf("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s&units=metric", url.QueryEscape(location.City), apiKey)
 
 	resp, err := http.Get(url)
 	if err != nil {
