@@ -19,10 +19,10 @@ func init() {
 func main() {
 
 	tempUsecase := usecases.NewTemperatureUseCase()
-
 	weatherService := service.NewWeatherService()
+	spotifyService := service.NewSpotifyService()
 
-	locationController := controller.NewLocationController(weatherService, tempUsecase)
+	locationController := controller.NewLocationController(weatherService, spotifyService, tempUsecase)
 
 	locationController.InitRoutes()
 }

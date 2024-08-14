@@ -11,14 +11,16 @@ import (
 )
 
 type LocationController struct {
-	service  *service.WeatherService
-	usecases *usecases.TemperatureUseCase
+	weatherService *service.WeatherService
+	spotifyService *service.SpotifyService
+	usecases       *usecases.TemperatureUseCase
 }
 
-func NewLocationController(service *service.WeatherService, usecases *usecases.TemperatureUseCase) *LocationController {
+func NewLocationController(weatherService *service.WeatherService, spotifyService *service.SpotifyService, usecases *usecases.TemperatureUseCase) *LocationController {
 	return &LocationController{
-		service:  service,
-		usecases: usecases,
+		weatherService: weatherService,
+		spotifyService: spotifyService,
+		usecases:       usecases,
 	}
 }
 
@@ -42,7 +44,7 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 		return
 	}
 
-	temp, err := c.service.GetWeather(*location)
+	temp, err := c.weatherService.GetWeather(*location)
 	if err != nil {
 		ctx.JSON(
 			http.StatusInternalServerError,
@@ -62,9 +64,23 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 		return
 	}
 
+	playlist, err := c.spotifyService.GetPlaylistByGenre(genre)
+	if err != nil {
+		ctx.JSON(
+			http.StatusInternalServerError,
+			gin.H{"error": "error to get playlist", "details": err.Error()},
+		)
+		return
+	}
+
 	ctx.JSON(
 		http.StatusOK,
-		gin.H{"temperature": temp, "playlistGenre": genre},
+		gin.H{"ID": playlist.ID,
+			"Name":       playlist.Name,
+			"URL":        playlist.URL,
+			"ImageURL":   playlist.ImageURL,
+			"TrackCount": playlist.TrackCount,
+		},
 	)
 
 }
