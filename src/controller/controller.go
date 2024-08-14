@@ -34,6 +34,16 @@ func (c *LocationController) InitRoutes() {
 
 }
 
+// @Summary Get music-weather
+// @Description Get weather based on location and suggest a playlist.
+// @Tags Music Weather
+// @Accept  json
+// @Produce  json
+// @Param   location body model.Location true "Location Info"
+// @Success 200 {object} model.Playlist
+// @Failure 400 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
+// @Router /music_weather [post]
 func (c *LocationController) handleFunc(ctx *gin.Context) {
 	location := new(model.Location)
 	if err := ctx.ShouldBindJSON(&location); err != nil {

@@ -1,0 +1,61 @@
+definitions:
+  model.Location:
+    properties:
+      city:
+        type: string
+    type: object
+  model.Playlist:
+    properties:
+      city:
+        type: string
+      genre:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      temperature:
+        type: number
+      track_count:
+        type: integer
+      url:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /music_weather:
+    post:
+      consumes:
+      - application/json
+      description: Get weather based on location and suggest a playlist.
+      parameters:
+      - description: Location Info
+        in: body
+        name: location
+        required: true
+        schema:
+          $ref: '#/definitions/model.Location'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get music-weather
+      tags:
+      - Music Weather
+swagger: "2.0"
