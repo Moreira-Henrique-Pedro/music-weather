@@ -80,7 +80,7 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 			"URL":         playlist.URL,
 			"ImageURL":    playlist.ImageURL,
 			"TrackCount":  playlist.TrackCount,
-			"City":        location,
+			"City":        location.City,
 			"Temperature": temp,
 			"Genre":       genre,
 		},
