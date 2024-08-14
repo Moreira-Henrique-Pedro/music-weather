@@ -8,6 +8,8 @@ import (
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/service"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/usecases"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type LocationController struct {
@@ -28,7 +30,11 @@ func (c *LocationController) InitRoutes() {
 
 	app := gin.Default()
 
+	// Rota para o endpoint da API
 	app.POST("/music_weather", c.handleFunc)
+
+	// Rota para a documentação Swagger
+	app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	app.Run(":8000")
 
