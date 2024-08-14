@@ -5,6 +5,7 @@ import (
 
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/controller"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/service"
+	"github.com/Moreira-Henrique-Pedro/music-weather/src/usecases"
 	"github.com/joho/godotenv"
 )
 
@@ -17,8 +18,11 @@ func init() {
 
 func main() {
 
+	tempUsecase := usecases.NewTemperatureUseCase()
+
 	weatherService := service.NewWeatherService()
-	locationController := controller.NewLocationController(weatherService)
+
+	locationController := controller.NewLocationController(weatherService, tempUsecase)
 
 	locationController.InitRoutes()
 }

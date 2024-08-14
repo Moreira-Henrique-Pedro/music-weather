@@ -6,16 +6,19 @@ import (
 
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/model"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/service"
+	"github.com/Moreira-Henrique-Pedro/music-weather/src/usecases"
 	"github.com/gin-gonic/gin"
 )
 
 type LocationController struct {
-	service *service.WeatherService
+	service  *service.WeatherService
+	usecases *usecases.TemperatureUseCase
 }
 
-func NewLocationController(service *service.WeatherService) *LocationController {
+func NewLocationController(service *service.WeatherService, usecases *usecases.TemperatureUseCase) *LocationController {
 	return &LocationController{
-		service: service,
+		service:  service,
+		usecases: usecases,
 	}
 }
 
@@ -49,5 +52,19 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 	}
 
 	fmt.Printf("Sua temperatura é %v", temp)
+
+	genre, err := c.usecases.DeterminePlaylistGenre(temp)
+	if err != nil {
+		ctx.JSON(
+			http.StatusInternalServerError,
+			gin.H{"error": "Failed to determine playlist genre", "details": err.Error()},
+		)
+		return
+	}
+
+	ctx.JSON(
+		http.StatusOK,
+		gin.H{"temperature": temp, "playlistGenre": genre},
+	)
 
 }
