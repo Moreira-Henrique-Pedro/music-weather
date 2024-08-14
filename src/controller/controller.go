@@ -76,10 +76,13 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 	ctx.JSON(
 		http.StatusOK,
 		gin.H{"ID": playlist.ID,
-			"Name":       playlist.Name,
-			"URL":        playlist.URL,
-			"ImageURL":   playlist.ImageURL,
-			"TrackCount": playlist.TrackCount,
+			"Name":        playlist.Name,
+			"URL":         playlist.URL,
+			"ImageURL":    playlist.ImageURL,
+			"TrackCount":  playlist.TrackCount,
+			"City":        location,
+			"Temperature": temp,
+			"Genre":       genre,
 		},
 	)
 
