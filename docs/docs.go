@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/music_weather": {
             "post": {
-                "description": "Get weather based on location and suggest a playlist.",
+                "description": "API criada para sugerir uma playlist no spotify com base na temperatura atual da cidade escolhida.",
                 "consumes": [
                     "application/json"
                 ],

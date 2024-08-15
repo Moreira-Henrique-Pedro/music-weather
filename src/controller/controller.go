@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	_ "github.com/Moreira-Henrique-Pedro/music-weather/docs"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/model"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/service"
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/usecases"
@@ -40,8 +41,10 @@ func (c *LocationController) InitRoutes() {
 
 }
 
+// @BasePath /api/v1
+
 // @Summary Get music-weather
-// @Description Get weather based on location and suggest a playlist.
+// @Description API criada para sugerir uma playlist no spotify com base na temperatura atual da cidade escolhida.
 // @Tags Music Weather
 // @Accept  json
 // @Produce  json

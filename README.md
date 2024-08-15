@@ -23,7 +23,7 @@ Utilizei o framework Gin para o desenvolvimento da API devido à sua simplicidad
 ### Serviços de Terceiros
 Para integrar dados externos ao serviço, decidi utilizar as APIs do Spotify e OpenWeatherMap. A API do OpenWeatherMap foi escolhida para obter dados precisos e em tempo real sobre a temperatura das cidades, o que é essencial para o funcionamento do serviço. Já a API do Spotify foi selecionada por sua ampla base de dados de músicas e playlists, permitindo sugerir playlists baseadas em diferentes gêneros musicais conforme a temperatura. Ambas as APIs são amplamente usadas e possuem boas documentações, o que facilita a integração.
 
-#### Deployment
+## Deployment
 GitHub Actions para Integração Contínua e Deploy Automático
 Para garantir a integração contínua e o deploy automático do serviço, configurei um workflow do GitHub Actions que é acionado sempre que há um push ou um pull request na branch main. O objetivo desse workflow é automatizar o processo de build, execução de testes, e deploy da aplicação na plataforma Render.
 
@@ -57,7 +57,7 @@ jobs:
       run: go test -v ./...
 ```
 
-#### Justificativa das Escolhas de Infraestrutura
+## Justificativa das Escolhas de Infraestrutura
 
 1. GitHub Actions: Escolhi o GitHub Actions como ferramenta de CI/CD (Integração Contínua/Entrega Contínua) devido à sua integração nativa com o GitHub, facilidade de uso e custo zero para repositórios públicos. O workflow definido automatiza o processo de build e testes, garantindo que o código na branch main esteja sempre funcionando corretamente antes de ser implantado.
 
@@ -71,28 +71,26 @@ Adequação ao Escopo do Projeto: Para uma aplicação como a music-weather, que
 
 Essa configuração garante que o processo de desenvolvimento seja ágil e automatizado, desde a codificação até o deploy em produção, permitindo que novas funcionalidades e correções de bugs sejam disponibilizadas de maneira contínua e confiável.
 
-### Instalação
+## Instalação
 
 Para configurar e rodar o projeto localmente, siga os passos abaixo:
 
-# Pré-requisitos:
+1. Certifique-se de ter o Go instalado em sua máquina. Você pode seguir o Guia de Instalação do Go para configurar o ambiente.
 
-Certifique-se de ter o Go instalado em sua máquina. Você pode seguir o Guia de Instalação do Go para configurar o ambiente.
-
-1. Clonando o Repositório:
+2. Clonando o Repositório:
 
 ```bash
 git clone https://github.com/Moreira-Henrique-Pedro/music-weather.git
 cd music-weather
 ```
 
-2. Instalando dependências:
+3. Instalando dependências:
 
 ```bash
 go mod tidy
 ```
 
-3. Rodando o projeto:
+4. Rodando o projeto:
 
 ```bash
 go run main.go
@@ -112,17 +110,26 @@ OPENWEATHER_API_KEY=<sua-_openweather-chave-aqui>
 SPOTIFY_CLIENT_ID=<seu-spotify-id-aqui>
 SPOTIFY_CLIENT_SECRET=<sua-spotify-secret-aqui>
 
-# Uso
+## Uso
 
 Para utilizar a aplicação, você pode fazer uma requisição POST para o endpoint /music_weather com o seguinte payload:
 
 ```bash
     {
-    "City": "Bangladesh"
+    "City": "Santo André"
     }
 ```
 
-URL de Produção: https://music-weather.onrender.com/music_weather
-URL Local: http://localhost:8000/music_weather
+URL de Produção
+
+```bash
+https://music-weather.onrender.com/music_weather
+```
+
+URL Local
+
+```bash
+http://localhost:8000/music_weather
+```
 
 A aplicação irá retornar uma playlist sugerida baseada na temperatura atual da cidade informada.

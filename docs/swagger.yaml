@@ -30,7 +30,8 @@ paths:
     post:
       consumes:
       - application/json
-      description: Get weather based on location and suggest a playlist.
+      description: API criada para sugerir uma playlist no spotify com base na temperatura
+        atual da cidade escolhida.
       parameters:
       - description: Location Info
         in: body
