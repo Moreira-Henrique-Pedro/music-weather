@@ -1,8 +1,8 @@
-# music-weather
+# Music-weather
 
-API to get weather based on location and suggest a playlist.
+API criada para sugerir uma playlist no spotify com base na temperatura atual da cidade escolhida.
 
-## Requirements
+## Requisitos
 
 * Golang: [Install Guide](https://golang.org/doc/install)
 * Gin: [Documentation](https://pkg.go.dev/github.com/gin-gonic/gin)
