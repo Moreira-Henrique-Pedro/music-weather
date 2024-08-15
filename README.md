@@ -133,3 +133,20 @@ http://localhost:8000/music_weather
 ```
 
 A aplicação irá retornar uma playlist sugerida baseada na temperatura atual da cidade informada.
+
+## Documentação Swagger
+
+A documentação da API é gerada automaticamente pelo Swagger e está disponível em uma interface interativa que permite explorar e testar os endpoints da API.
+Para acessar a documentação Swagger:
+
+URL de Produção
+Documentação Swagger: https://music-weather.onrender.com/swagger/index.html
+
+URL Local
+Documentação Swagger: http://localhost:8000/swagger/index.html
+
+### Acessando a Documentação
+
+Abrir a URL: Acesse a URL fornecida acima no seu navegador para visualizar a documentação.
+
+Explorar Endpoints: Use a interface do Swagger para explorar os endpoints disponíveis, ver exemplos de requisições e respostas, e testar as APIs diretamente no navegador.
