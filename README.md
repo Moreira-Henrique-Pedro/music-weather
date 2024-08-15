@@ -102,7 +102,7 @@ As seguintes variáveis de ambiente são necessárias para a aplicação funcion
 
 OPENWEATHER_API_KEY - Chave de API para acessar o OpenWeatherMap.
 SPOTIFY_CLIENT_ID - ID do cliente para autenticação com a API do Spotify.
-SPOTIFY_CLIENT_SECRET - Segredo do cliente para autenticação com a API do Spotify.
+SPOTIFY_CLIENT_SECRET - Secret do cliente para autenticação com a API do Spotify.
 
 Você pode criar um arquivo .env na raiz do projeto com as variáveis mencionadas e seus respectivos valores:
 
