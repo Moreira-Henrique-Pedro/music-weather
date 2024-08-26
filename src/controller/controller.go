@@ -72,7 +72,7 @@ func (c *LocationController) handleFunc(ctx *gin.Context) {
 		return
 	}
 
-	fmt.Printf("Sua temperatura é %v", temp)
+	fmt.Printf("Temp founded %v", temp)
 
 	genre, err := c.usecases.DeterminePlaylistGenre(temp)
 	if err != nil {

@@ -2,7 +2,9 @@ package service
 
 import (
 	"context"
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/Moreira-Henrique-Pedro/music-weather/src/model"
 	"github.com/zmb3/spotify"
@@ -35,7 +37,12 @@ func (s *SpotifyService) GetPlaylistByGenre(genre string) (model.Playlist, error
 	}
 
 	if len(searchResult.Playlists.Playlists) > 0 {
-		playlist := searchResult.Playlists.Playlists[0]
+
+		rand.Seed(time.Now().UnixNano())
+
+		randomIndex := rand.Intn(len(searchResult.Playlists.Playlists))
+
+		playlist := searchResult.Playlists.Playlists[randomIndex]
 		return convertSpotifyPlaylist(playlist), nil
 	}
 
